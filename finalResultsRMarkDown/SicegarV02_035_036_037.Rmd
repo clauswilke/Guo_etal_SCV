@@ -1,0 +1,304 @@
+---
+title: "Sicegar Figures      Samples: SCV035, SCV036, SCV037"
+author: "Mehmet Umut Caglar"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 120)
+```
+
+
+```{r initials, include=FALSE}
+###*****************************
+# INITIAL COMMANDS TO RESET THE SYSTEM
+rm(list = ls())
+if (is.integer(dev.list())){dev.off()}
+cat("\014")
+set.seed(14159)
+###*****************************
+
+
+###*****************************
+# Set Working Directory
+# One needs to arrange the correct pathway if this is not umut's computer ;)
+if(as.vector(Sys.info()["effective_user"]=="umut"))
+{
+  setwd(paste0("/Users/umut/GitHub/Guo_etal_SCV/finalResultsRMarkDown/"))
+} # mac computer
+###*****************************
+
+
+###*****************************
+#Load Libraries
+require(ggplot2)
+require(cowplot)
+require(reshape2)
+require(tidyr)
+require(dplyr)
+
+require(grid)
+require(gridExtra)
+require(lazyeval)
+require(pwr)
+require(xtable)
+require(htmlTable)
+###*****************************
+
+
+###*****************************
+# Source functions
+source("sicegarTableFunction.R")
+source("replaceFunction.R")
+source("singleVariableHistogramFunction.R")
+source("doubleVariablePlottingFunction.R")
+source("saveFigureDataFunction.R")
+###*****************************
+```
+
+
+
+```{r cache=FALSE, echo=FALSE}
+# read all the code chunks
+knitr::read_chunk('sicegar_chunks.R')
+```
+
+
+Here is the association table of sample names and conditions, colored with respect to condition color used in figures.
+
+```{r parameters, echo=FALSE, warning=FALSE}
+###*****************************
+# Color codes & conditions of the experiment sets used
+# Test Name & Data Load & Colors
+testName="15Aug2017"
+listFileNames=c("SCV035","SCV036","SCV037") # <- simply change this to pick up correct data
+listConditionNames=c("Control", "G0/G1 phase", "G2/M phase") # <-  They are associated labels for datasets
+listOrderNames=c("Control", "G0/G1 phase", "G2/M phase") # <- They are the order of labels 
+
+colVec01=c("#e41a1c", "#377eb8", "#4daf4a") # <- simply change this to change figure colors
+###*****************************
+htmlTable(as.matrix(data.frame("File names"=listFileNames,"Conditions"=listConditionNames)),
+           col.rgroup = colVec01)
+```
+
+
+```{r Generate data sets that will be used for plots, include=FALSE}
+```
+
+
+
+
+
+## The Aim of Distriburion Analysis
+
+This part of document includes figures representing the distribution of labels associated with samples. Can give idea about percentage distributions of classes (like: "no signal", "infection", "infection&lysis") and distribution of problematic samples (like: "dirt", "dried out", "multiple infections")
+
+
+```{r Generate data sets that will be used for plots, include=FALSE}
+```
+
+
+### Distibutions
+
+```{r Distribution of labels, echo=FALSE, include=FALSE}
+```
+
+
+
+
+Here once more the figures side by side
+
+```{r Distribution of labels WIDE, echo=FALSE, warning=FALSE, fig.width=22, fig.height=7}
+```
+
+
+### Distribution of DDOM
+
+```{r Distribution of DDOM data, include=FALSE}
+# calculates necessary DF
+```
+
+```{r Distribution of DDOM, echo=FALSE, warning=FALSE, fig.width=12.5, fig.height=7}
+```
+
+
+
+## The Aim of Single Variable Analysis
+
+This part of document includes single variable figures associated with samples. We focus on 5 parameters: maximum, shape, midpoint, infection time, start point. For all parameters we investigate either the entire set of infections (i.e both "infection" and "infection & lysis"), or we only investigate the "infection & lysis" cases. 
+
+For each figure we include tables showing p-values from t.test, Mann-Whitney U Test (wilcox.test), ,ean differences between conditions and the effect size. The tables also show the sample size for each condition.
+
+
+
+### Maximum
+
+```{r Maximum Associated figures and tables, echo=FALSE, warning=FALSE, fig.show="hide"}
+```
+
+
+
+
+Here are the figures side by side
+
+```{r Maximum Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+Following is the violin graph representing the distribution of maximums
+
+```{r Maximum Associated violin, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+
+
+
+### Slope
+
+```{r Slope Associated figures and tables, echo=FALSE, warning=FALSE, fig.show="hide"}
+```
+
+
+
+
+Here are the figures side by side
+
+```{r Slope Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+Following is the violin graph representing the distribution of slopes
+
+```{r Slope Associated violin, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+
+
+
+
+
+
+
+### Midpoint
+
+```{r Midpoint Associated figures and tables, echo=FALSE, warning=FALSE, fig.show="hide"}
+```
+
+
+Here are the figures side by side
+
+```{r Midpoint Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+
+Following is the violin graph representing the distribution of midpoints
+
+```{r Midpoint Associated violin, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+
+
+
+
+### Infection Time
+
+```{r Infection time Associated figures and tables, echo=FALSE, warning=FALSE, fig.show="hide"}
+```
+
+
+Here are the figures side by side
+
+```{r Infection time Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+Following is the violin graph representing the distribution of infection time
+
+```{r Infection time associated violin, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+
+
+
+### Start point
+
+```{r Start point Associated figures and tables, echo=FALSE, warning=FALSE, fig.show="hide"}
+```
+
+
+
+Here are the figures side by side
+
+```{r start point Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+Following is the violin graph representing the distribution of start point
+
+```{r Start point associated violin, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+```
+
+
+## The Aim
+
+This document includes double variable figures associated with samples. For all parameters we investigate either the entire set of infections (i.e both "infection" and "infection & lysis"), or we only investigate the "infection & lysis" cases. For each graph we plot density and point versions. 
+
+The investigated parameter couples are
+
+1.) Midpoint vs Slope
+2.) Slope vs Maximum
+3.) Midpoint vs Maximum
+
+
+### Midpoint vs Slope
+
+```{r Midpoint vs Slope Associated figures and tables, include=FALSE}
+```
+
+
+
+```{r Midpoint vs Slope Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=15}
+```
+
+
+
+### Slope vs Maximum
+
+```{r Slope vs Maximum Associated figures and tables, include=FALSE}
+```
+
+
+
+```{r Slope vs Maximum Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=15}
+```
+
+
+
+
+
+
+
+
+
+
+### Midpoint vs Maximum
+
+```{r Midpoint vs Maximum Associated figures and tables, include=FALSE}
+```
+
+
+```{r Midpoint vs Maximum Associated figures and tables WIDE, echo=FALSE, warning=FALSE, fig.width=14, fig.height=15}
+```
+
