@@ -38,7 +38,7 @@ require(tidyr)
 
 listFileNames=c("SCV096", "SCV097", "SCV098", "SCV099") # the correct data sets
 listMOI_level=c("2000","2000", "2000", "2000") # write the correct MOI's (must be numbers)
-listMutation_Value=c("WT", "WT", "HR", "HR") # write the mutant type
+listMutation_Value=c("WT", "WT", "WT", "WT") # write the mutant type
 
 for (i in 1:length(listFileNames) ) {
   dataFileName=listFileNames[i]

@@ -43,10 +43,20 @@ require("stringr")
 # Chose data name
 # simply change this to pick up correct files to analyse
 
-#listFileNames=c("SCV028", "SCV029", "SCV030")
-#listFileNames=c("SCV031", "SCV032")
-#listFileNames=c("SCV035", "SCV036", "SCV037")
-listFileNames=c("SCV038", "SCV039", "SCV040", "SCV041")
+# listFileNames=c("SCV028", "SCV029", "SCV030")
+# min_max_val = 0.3
+
+# listFileNames=c("SCV031", "SCV032")
+# min_max_val = 0.3
+
+# listFileNames=c("SCV035", "SCV036", "SCV037")
+# min_max_val = 0.3
+
+# listFileNames=c("SCV038", "SCV039", "SCV040", "SCV041")
+# min_max_val = 0.3
+
+listFileNames=c("SCV096", "SCV097", "SCV098", "SCV099")
+min_max_val = 0.4
 #********************************************
 
 for (counter02 in 1:length(listFileNames) )
@@ -70,7 +80,8 @@ for (counter02 in 1:length(listFileNames) )
     dataInputName=unique(data$Cell)
     #print(dataInputName)
     sicegar::fitAndCategorize(dataInput = dataInput1,
-                              dataInputName = dataInputName) ->fitObj
+                              dataInputName = dataInputName,
+                              threshold_minimum_for_intensity_maximum = min_max_val) ->fitObj
     
     # Data Scaling Parameters
     dataScalingParametersDF <- data.frame(t(fitObj$normalizedInput$dataScalingParameters))
