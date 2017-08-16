@@ -1,15 +1,15 @@
-# Guo_etal_SCV
+# Data and code for Guo et al., Single-cell virology
 
-This is the data repository that includes datsets ans data pipeline of "Single-cell virology: on-chip investigation of viral infection dynamics" work. 
+This repository includes the datsets and analysis pipeline of Guo et al., "Single-cell virology: on-chip investigation of viral infection dynamics". 
 
-The `code:SCV_data_information_short.xlsx` file includes detailed information about the samples including the conditions of the experiment and the threshold intensity value used in the experiments
+The file `SCV_data_information_short.xlsx` includes detailed information about the samples including the conditions of the experiment and the threshold intensity value used in the experiments.
 
-`data_figure_relations.txt` file includes information that links datasets with figures
+The file `data_figure_relations.txt` includes information that links datasets with figures.
 
-FOLDERS
+## Folders
 
-- `\rawData` includes raw intensity measurements.
-- `\codeSicegar` includes pipeline files.
-- `\tidyData` includes same raw intensity files in tidy form.
-- `\detailedSicegarResults` includes all the outputs of sicegar package for each sample set.
-- `\finalResultsRMarkDown` the folder includes `html` files that shows comparisons of multiple datasets, files that includes all the outputs of sicegar package and experimental condition details, summary tables that summarize sicegar outputs. 
+- `rawData`: includes raw intensity measurements
+- `codeSicegar`: includes pipeline files, built on top of the R package [sicegar](https://CRAN.R-project.org/package=sicegar)
+- `tidyData`: includes same raw intensity files in tidy form
+- `detailedSicegarResults`: includes all the outputs of sicegar package for each sample set
+- `finalResultsRMarkDown`: includes html files that show comparisons of multiple datasets, files that includes all the outputs of sicegar package combined with experimental condition details, and summary tables that summarize sicegar outputs 
