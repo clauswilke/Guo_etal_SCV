@@ -12,4 +12,4 @@ FOLDERS
 - `\codeSicegar` includes pipeline files.
 - `\tidyData` includes same raw intensity files in tidy form.
 - `\detailedSicegarResults` includes all the outputs of sicegar package for each sample set.
-- `\finalResultsRMarkDown` look at the readme file in the folder.
+- `\finalResultsRMarkDown` the folder includes `html` files that shows comparisons of multiple datasets, files that includes all the outputs of sicegar package and experimental condition details, summary tables that summarize sicegar outputs. 
