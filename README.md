@@ -1,13 +1,15 @@
 # Guo_etal_SCV
 
-The "SCV_data_information_short.xlsx" file includes detailed information about the samples and the threshold intensity value used in the experiments
+This is the data repository that includes datsets ans data pipeline of "Single-cell virology: on-chip investigation of viral infection dynamics" work. 
 
-Data figure relations file includes information that related datasets with figures
+The `code:SCV_data_information_short.xlsx` file includes detailed information about the samples including the conditions of the experiment and the threshold intensity value used in the experiments
+
+`data_figure_relations.txt` file includes information that links datasets with figures
 
 FOLDERS
 
-\rawData includes raw intensity measurements.
-\codeSicegar includes files related with pipeline.
-\tidyData includes same raw intensity files in tidy form.
-\detailedSicegarResults includes all the outputs of sicegar package for each sample set.
-\finalResultsRMarkDown look at the readme file in the folder.
+- `\rawData` includes raw intensity measurements.
+- `\codeSicegar` includes pipeline files.
+- `\tidyData` includes same raw intensity files in tidy form.
+- `\detailedSicegarResults` includes all the outputs of sicegar package for each sample set.
+- `\finalResultsRMarkDown` look at the readme file in the folder.
