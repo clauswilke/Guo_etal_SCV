@@ -13,3 +13,4 @@ The file `data_figure_relations.txt` includes information that links datasets wi
 - `tidyData`: same raw intensity files in tidy form
 - `detailedSicegarResults`: all the outputs of the sicegar package for each sample set
 - `finalResultsRMarkDown`: various files: html files that show comparisons of multiple datasets, files that includes all the outputs of sicegar package combined with experimental condition details, and summary tables that summarize sicegar outputs 
+- `supplemental_text`: supplemental text for this manuscript
