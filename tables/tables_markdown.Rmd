@@ -9,9 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Generating Tables for Guo et al. single cell virology paper
+## Generating Supporting Tables for Guo et al. single cell virology paper
 
-Those are the tables for Guo et al, single cell virology paper
+Those are the supporting tables for Guo et al. single cell virology paper
 
 ```{r initials, include=FALSE}
 ###*****************************
@@ -161,7 +161,7 @@ table_p_value <- function(df)
 
 ```
 
-### Table 2
+### Table S2
 ```{r table 2}
 ###*****************************
 # Table_02
@@ -185,34 +185,34 @@ print.data.frame(table_02)
 ###*****************************
 ```
 
-### Table 3
+### Table S3
 ```{r table 3}
 df <- samp_028_029_030
 table_p_value(df)
 ```
 
-### Table 4
+### Table S4
 ```{r table 4}
 df <- samp_035_036_037
 table_p_value(df)
 ```
 
-### Table 5
+### Table S5
 Will figure out soon 
 
-### Table 6
+### Table S6
 ```{r table 6}
 df <- samp_038_039_040_041
 table_p_value(df)
 ```
 
-### Table 7
+### Table S7
 ```{r table 7}
 df <- samp_031_032
 table_p_value(df)
 ```
 
-### Table 8
+### Table S8
 ```{r table 8}
 df <- samp_029_031_035
 table_p_value(df)
