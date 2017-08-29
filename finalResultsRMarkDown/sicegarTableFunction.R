@@ -96,6 +96,7 @@ tableFunction <-function(dataTable, seperationVariable, condition, testType){
     adj.matrix2=matrix(nrow = (nrow(fig_table)-1), ncol = (ncol(fig_table)-1))
     adj.matrix[upper.tri(adj.matrix, diag=TRUE)] <- getUpperAdj
     adj.matrix2=adj.matrix
+    diag(adj.matrix2) = 1 # new line
     adj.matrix2[lower.tri(adj.matrix2)] <- t(adj.matrix)[lower.tri(adj.matrix)]
     
     fig_table[1:(nrow(fig_table)-1),1:(ncol(fig_table)-1)]<-sprintf("%.5f",adj.matrix2)

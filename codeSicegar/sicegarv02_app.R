@@ -44,19 +44,19 @@ require("stringr")
 # simply change this to pick up correct files to analyse
 
 # listFileNames=c("SCV028", "SCV029", "SCV030")
-# min_max_val = 0.3
+# min_max_val = 0.05
 
-# listFileNames=c("SCV031", "SCV032")
-# min_max_val = 0.3
+listFileNames=c("SCV031", "SCV032")
+min_max_val = 0.05
 
 # listFileNames=c("SCV035", "SCV036", "SCV037")
-# min_max_val = 0.3
+# min_max_val = 0.075
 
 # listFileNames=c("SCV038", "SCV039", "SCV040", "SCV041")
-# min_max_val = 0.3
+# min_max_val = 0.01
 
-listFileNames=c("SCV096", "SCV097", "SCV098", "SCV099")
-min_max_val = 0.4
+#listFileNames=c("SCV096", "SCV097", "SCV098", "SCV099")
+#min_max_val = 0.4
 #********************************************
 
 for (counter02 in 1:length(listFileNames) )
