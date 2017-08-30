@@ -42,6 +42,7 @@ samp_035_036_037 <- read.csv("../finalResultsRMarkDown/variables_035_036_037/inf
 samp_038_039_040_041 <- read.csv("../finalResultsRMarkDown/variables_038_039_040_041/inf_infLys_038_039_040_041.csv")
 samp_096_097_098_099 <- read.csv("../finalResultsRMarkDown/variables_096_097_098_099/inf_infLys_096_097_098_099.csv")
 
+
 samp <- dplyr::bind_rows(samp_028_029_030, 
                          samp_031_032, 
                          samp_035_036_037, 
@@ -73,17 +74,17 @@ samp%>%
 
 ###*****************************
 # P value Table Function
-table_p_value <- function(df)
+table_p_value <- function(df, classifier)
 {
   df %>%
-    dplyr::group_by(dataSet_bio) %>%
+    dplyr::group_by_(classifier) %>%
     dplyr::summarise(numSample = n())-> df_summary
   
   print.data.frame(df_summary)
   
   # Table_maximum_new
   temp = pairwise.t.test(df$COMB_maximum_y, 
-                         df$dataSet_bio, 
+                         df[[classifier]], 
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Maximum"
@@ -97,7 +98,7 @@ table_p_value <- function(df)
   
   # Table_slope_new
   temp = pairwise.t.test(df$COMB_slope1, 
-                         df$dataSet_bio, 
+                         df[[classifier]], 
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Slope"
@@ -112,7 +113,7 @@ table_p_value <- function(df)
   
   # Table_midPoint_new
   temp = pairwise.t.test(df$COMB_midPoint1_x, 
-                         df$dataSet_bio, 
+                         df[[classifier]], 
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Midpoint"
@@ -127,7 +128,7 @@ table_p_value <- function(df)
   
   # Table_startPoint_new
   temp = pairwise.t.test(df$COMB_startPoint_x, 
-                         df$dataSet_bio, 
+                         df[[classifier]], 
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Start point"
@@ -142,9 +143,9 @@ table_p_value <- function(df)
   
   # Table_incrementTime_new
   temp = pairwise.t.test(df$COMB_incrementTime, 
-                  df$dataSet_bio, 
-                  p.adjust.method = "fdr", 
-                  pool.sd = TRUE)
+                         df[[classifier]], 
+                         p.adjust.method = "fdr", 
+                         pool.sd = TRUE)
   temp$data.name <- "Infection time"
   
   print(temp$data.name)
@@ -165,40 +166,48 @@ table_p_value <- function(df)
 ###*****************************
 # Table 03
 df <- samp_028_029_030
-table_p_value(df)
+table_p_value(df = df,
+              classifier = "dataSet_bio")
 ###*****************************
 
 
 ###*****************************
 # Table 04
 df <- samp_035_036_037
-table_p_value(df)
+table_p_value(df = df,
+              classifier = "dataSet_bio")
 ###*****************************
 
 
 ###*****************************
 # Table 05
-# df <- samp_035_036_037
-# table_p_value(df)
+samp_035_036_037 %>%
+  dplyr::filter(dataSet == "SCV035") -> df
+
+table_p_value(df = df,
+              classifier = "decision_bio")
 ###*****************************
 
 
 ###*****************************
 # Table 06
 df <- samp_038_039_040_041
-table_p_value(df)
+table_p_value(df = df,
+              classifier = "dataSet_bio")
 ###*****************************
 
 
 ###*****************************
 # Table 07
 df <- samp_031_032
-table_p_value(df)
+table_p_value(df = df,
+              classifier = "dataSet_bio")
 ###*****************************
 
 
 ###*****************************
 # Table 08
 df <- samp_029_031_035
-table_p_value(df)
+table_p_value(df = df,
+              classifier = "dataSet_bio")
 ###*****************************
