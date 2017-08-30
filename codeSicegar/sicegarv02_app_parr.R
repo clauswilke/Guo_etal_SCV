@@ -61,7 +61,7 @@ getDoParWorkers() # check how many cores (workers) are registered
 # simply change this to pick up correct files to analyse
 
  listFileNames=c("SCV028", "SCV029", "SCV030")
- min_max_val = 0.02
+ min_max_val = 0.05
 
 # listFileNames=c("SCV031", "SCV032")
 # min_max_val = 0.05
