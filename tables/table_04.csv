@@ -1,0 +1,26 @@
+Test parameter,rn,Control,G0/G1 phase,G2/M phase,Sample size
+,,Control,G0/G1 phase,G2/M phase,Sample size
+Maximum,Control,1.00,0.74,0.74,163
+Maximum,G0/G1 phase,0.74,1.00,0.74,264
+Maximum,G2/M phase,0.74,0.74,1.00,143
+Maximum,Sample size,163,264,143,
+,,Control,G0/G1 phase,G2/M phase,Sample size
+Slope,Control,1.00,0.24,0.36,163
+Slope,G0/G1 phase,0.24,1.00,0.71,264
+Slope,G2/M phase,0.36,0.71,1.00,143
+Slope,Sample size,163,264,143,
+,,Control,G0/G1 phase,G2/M phase,Sample size
+Midpoint,Control,1.00,0.28,0.92,163
+Midpoint,G0/G1 phase,0.28,1.00,0.28,264
+Midpoint,G2/M phase,0.92,0.28,1.00,143
+Midpoint,Sample size,163,264,143,
+,,Control,G0/G1 phase,G2/M phase,Sample size
+Start point,Control,1.00,0.42,0.89,163
+Start point,G0/G1 phase,0.42,1.00,0.42,264
+Start point,G2/M phase,0.89,0.42,1.00,143
+Start point,Sample size,163,264,143,
+,,Control,G0/G1 phase,G2/M phase,Sample size
+Infection time,Control,1.00,0.72,0.9,163
+Infection time,G0/G1 phase,0.72,1.00,0.72,264
+Infection time,G2/M phase,0.9,0.72,1.00,143
+Infection time,Sample size,163,264,143,

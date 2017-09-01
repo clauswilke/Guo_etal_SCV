@@ -1,0 +1,26 @@
+Test parameter,rn,MOI_50,MOI_500,MOI_5000,Sample size
+,,MOI_50,MOI_500,MOI_5000,Sample size
+Maximum,MOI_50,1.00,0.66,0.24,92
+Maximum,MOI_500,0.66,1.00,0.24,127
+Maximum,MOI_5000,0.24,0.24,1.00,190
+Maximum,Sample size,92,127,190,
+,,MOI_50,MOI_500,MOI_5000,Sample size
+Slope,MOI_50,1.00,0.09,0,92
+Slope,MOI_500,0.09,1.00,0,127
+Slope,MOI_5000,0,0,1.00,190
+Slope,Sample size,92,127,190,
+,,MOI_50,MOI_500,MOI_5000,Sample size
+Midpoint,MOI_50,1.00,0,0,92
+Midpoint,MOI_500,0,1.00,0,127
+Midpoint,MOI_5000,0,0,1.00,190
+Midpoint,Sample size,92,127,190,
+,,MOI_50,MOI_500,MOI_5000,Sample size
+Start point,MOI_50,1.00,0.02,0,92
+Start point,MOI_500,0.02,1.00,0,127
+Start point,MOI_5000,0,0,1.00,190
+Start point,Sample size,92,127,190,
+,,MOI_50,MOI_500,MOI_5000,Sample size
+Infection time,MOI_50,1.00,0,0,92
+Infection time,MOI_500,0,1.00,0,127
+Infection time,MOI_5000,0,0,1.00,190
+Infection time,Sample size,92,127,190,

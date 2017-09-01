@@ -58,17 +58,22 @@ samp <- dplyr::bind_rows(samp_028_029_030,
 
 samp%>%
   dplyr::group_by(dataSet, dataSet_bio, Mutation, MOI) %>%
-  dplyr::summarise(maximum_mean = mean(COMB_maximum_y),
-                   maximum_sd = sd(COMB_maximum_y),
-                   midPoint_mean = mean(COMB_midPoint1_x),
-                   midPoint_sd = sd(COMB_midPoint1_x),
-                   slope_mean = mean(COMB_slope1),
-                   slope_sd = sd(COMB_slope1),
-                   infectionTime_mean = mean(COMB_incrementTime),
-                   infectionTime_sd = sd(COMB_incrementTime),
-                   startPoint_mean = mean(COMB_startPoint_x),
-                   startPoint_sd = sd(COMB_startPoint_x)) -> table_02
+  dplyr::summarise("Maximum mean" = mean(COMB_maximum_y),
+                   "Maximum sd" = sd(COMB_maximum_y),
+                   "Midpoint mean" = mean(COMB_midPoint1_x),
+                   "Midpoint sd" = sd(COMB_midPoint1_x),
+                   "Slope mean" = mean(COMB_slope1),
+                   "Slope sd" = sd(COMB_slope1),
+                   "Infection time mean" = mean(COMB_incrementTime),
+                   "Infection time sd" = sd(COMB_incrementTime),
+                   "Startpoint mean" = mean(COMB_startPoint_x),
+                   "Startpoint sd" = sd(COMB_startPoint_x)) -> table_02
 
+ini_df = table_02[setdiff(seq(1,ncol(table_02)),grep(" sd| mean" ,x = colnames(table_02)))]
+rounded_df = round(table_02[grep(" sd| mean" ,x = colnames(table_02))],2)
+table_02_round = bind_cols(x = ini_df, y = rounded_df)
+
+write.csv(x = table_02_round, file = "table_02.csv", quote = F, row.names = F, col.names = T)
 ###*****************************
 
 
@@ -76,11 +81,15 @@ samp%>%
 # P value Table Function
 table_p_value <- function(df, classifier)
 {
+  
   df %>%
     dplyr::group_by_(classifier) %>%
     dplyr::summarise(numSample = n())-> df_summary
   
   print.data.frame(df_summary)
+  
+  cat("\nAll tests use pairwise comparisons using t tests with pooled SD \n")
+  cat("All test use *fdr* as P value adjustment method \n")
   
   # Table_maximum_new
   temp = pairwise.t.test(df$COMB_maximum_y, 
@@ -88,7 +97,25 @@ table_p_value <- function(df, classifier)
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Maximum"
-  print(temp)
+  
+  theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
+  colnames(theMatrix) <- df_summary[[classifier]]
+  rownames(theMatrix) <- df_summary[[classifier]]
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  diag(theMatrix) <- "1.00"
+  
+  theMatrix %>%
+    rbind(.,"Sample size" = as.character(df_summary[["numSample"]])) %>%
+    cbind(.,"Sample size" = c(as.character(df_summary[["numSample"]]),"")) -> theMatrix
+  
+  theMatrix %>%
+    cbind(rn=rownames(theMatrix),.) %>%
+    cbind("Test parameter" = temp$data.name,.) %>%
+    rbind(colnames(.),.) -> theMaximumMatrix
+  
+  cat("\n",paste0(temp$data.name, "\n"))
+  print(temp$p.value)
   
   # # Table_maximum_old
   # tableFunction(dataTable = df, 
@@ -102,7 +129,24 @@ table_p_value <- function(df, classifier)
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Slope"
-  print(temp$data.name)
+  
+  theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
+  colnames(theMatrix) <- df_summary[[classifier]]
+  rownames(theMatrix) <- df_summary[[classifier]]
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  diag(theMatrix) <- "1.00"
+  
+  theMatrix %>%
+    rbind(.,"Sample size" = as.character(df_summary[["numSample"]])) %>%
+    cbind(.,"Sample size" = c(as.character(df_summary[["numSample"]]),"")) -> theMatrix
+  
+  theMatrix %>%
+    cbind(rn=rownames(theMatrix),.) %>%
+    cbind("Test parameter" = temp$data.name,.) %>%
+    rbind(colnames(.),.) -> theSlopeMatrix
+  
+  cat("\n",paste0(temp$data.name, "\n"))
   print(temp$p.value)
   
   # # Table_slope_old
@@ -117,7 +161,24 @@ table_p_value <- function(df, classifier)
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Midpoint"
-  print(temp$data.name)
+  
+  theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
+  colnames(theMatrix) <- df_summary[[classifier]]
+  rownames(theMatrix) <- df_summary[[classifier]]
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  diag(theMatrix) <- "1.00"
+  
+  theMatrix %>%
+    rbind(.,"Sample size" = as.character(df_summary[["numSample"]])) %>%
+    cbind(.,"Sample size" = c(as.character(df_summary[["numSample"]]),"")) -> theMatrix
+  
+  theMatrix %>%
+    cbind(rn=rownames(theMatrix),.) %>%
+    cbind("Test parameter" = temp$data.name,.) %>%
+    rbind(colnames(.),.) -> theMidpointMatrix
+  
+  cat("\n",paste0(temp$data.name, "\n"))
   print(temp$p.value)
   
   # # Table_midPoint_old
@@ -132,7 +193,24 @@ table_p_value <- function(df, classifier)
                          p.adjust.method = "fdr", 
                          pool.sd = TRUE)
   temp$data.name <- "Start point"
-  print(temp$data.name)
+  
+  theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
+  colnames(theMatrix) <- df_summary[[classifier]]
+  rownames(theMatrix) <- df_summary[[classifier]]
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  diag(theMatrix) <- "1.00"
+  
+  theMatrix %>%
+    rbind(.,"Sample size" = as.character(df_summary[["numSample"]])) %>%
+    cbind(.,"Sample size" = c(as.character(df_summary[["numSample"]]),"")) -> theMatrix
+  
+  theMatrix %>%
+    cbind(rn=rownames(theMatrix),.) %>%
+    cbind("Test parameter" = temp$data.name,.) %>%
+    rbind(colnames(.),.) -> theStartpointMatrix
+  
+  cat("\n",paste0(temp$data.name, "\n"))
   print(temp$p.value)
   
   # # Table_startPoint_old
@@ -148,7 +226,23 @@ table_p_value <- function(df, classifier)
                          pool.sd = TRUE)
   temp$data.name <- "Infection time"
   
-  print(temp$data.name)
+  theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
+  colnames(theMatrix) <- df_summary[[classifier]]
+  rownames(theMatrix) <- df_summary[[classifier]]
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  diag(theMatrix) <- "1.00"
+  
+  theMatrix %>%
+    rbind(.,"Sample size" = as.character(df_summary[["numSample"]])) %>%
+    cbind(.,"Sample size" = c(as.character(df_summary[["numSample"]]),"")) -> theMatrix
+  
+  theMatrix %>%
+    cbind(rn=rownames(theMatrix),.) %>%
+    cbind("Test parameter" = temp$data.name,.) %>%
+    rbind(colnames(.),.) -> theInfectiontimeMatrix
+  
+  cat("\n",paste0(temp$data.name, "\n"))
   print(temp$p.value)
   
   
@@ -157,25 +251,44 @@ table_p_value <- function(df, classifier)
   #               seperationVariable = "dataSet_bio", 
   #               condition = "COMB_incrementTime", 
   #               testType = "t.test")
+  
+  
+  theMatrix = rbind(theMaximumMatrix,
+                    theSlopeMatrix,
+                    theMidpointMatrix,
+                    theStartpointMatrix,
+                    theInfectiontimeMatrix)
+  
+  theMatrix[theMatrix == "rn"] <- ""
+  theMatrix[theMatrix == "Test parameter"] <- ""
+  
+  return(theMatrix)
 }
 ###*****************************
 
+
+
+###*****************************
+# Convert tables to nice outputs function
+###*****************************
 
 
 
 ###*****************************
 # Table 03
 df <- samp_028_029_030
-table_p_value(df = df,
-              classifier = "dataSet_bio")
+matrix_028_029_030 = table_p_value(df = df,
+                                   classifier = "dataSet_bio")
+write.csv(x = matrix_028_029_030, file = "table_03.csv", quote = F, row.names = F, col.names = F)
 ###*****************************
 
 
 ###*****************************
 # Table 04
 df <- samp_035_036_037
-table_p_value(df = df,
-              classifier = "dataSet_bio")
+matrix_035_036_037 = table_p_value(df = df,
+                                   classifier = "dataSet_bio")
+write.csv(x = matrix_035_036_037, file = "table_04.csv", quote = F, row.names = F, col.names = F)
 ###*****************************
 
 
@@ -184,30 +297,35 @@ table_p_value(df = df,
 samp_035_036_037 %>%
   dplyr::filter(dataSet == "SCV035") -> df
 
-table_p_value(df = df,
-              classifier = "decision_bio")
+matrix_035 = table_p_value(df = df,
+                           classifier = "decision_bio")
+
+write.csv(x = matrix_035, file = "table_05.csv", quote = F, row.names = F, col.names = F)
 ###*****************************
 
 
 ###*****************************
 # Table 06
 df <- samp_038_039_040_041
-table_p_value(df = df,
-              classifier = "dataSet_bio")
+matrix_038_039_040_041 = table_p_value(df = df,
+                                       classifier = "dataSet_bio")
+write.csv(x = matrix_038_039_040_041, file = "table_06.csv", quote = F, row.names = F, col.names = F)
 ###*****************************
 
 
 ###*****************************
 # Table 07
 df <- samp_031_032
-table_p_value(df = df,
-              classifier = "dataSet_bio")
+matrix_031_032 = table_p_value(df = df,
+                               classifier = "dataSet_bio")
+write.csv(x = matrix_031_032, file = "table_07.csv", quote = F, row.names = F, col.names = F)
 ###*****************************
 
 
 ###*****************************
 # Table 08
 df <- samp_029_031_035
-table_p_value(df = df,
-              classifier = "dataSet_bio")
+matrix_029_031_035 = table_p_value(df = df,
+                                   classifier = "dataSet_bio")
+write.csv(x = matrix_029_031_035, file = "table_08.csv", quote = F, row.names = F, col.names = F)
 ###*****************************

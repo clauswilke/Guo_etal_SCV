@@ -1,0 +1,21 @@
+Test parameter,rn,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+,,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+Maximum,0 µM 2'-C-meA,1.00,0,154
+Maximum,50 µM 2'-C-meA,0,1.00,173
+Maximum,Sample size,154,173,
+,,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+Slope,0 µM 2'-C-meA,1.00,0,154
+Slope,50 µM 2'-C-meA,0,1.00,173
+Slope,Sample size,154,173,
+,,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+Midpoint,0 µM 2'-C-meA,1.00,0.06,154
+Midpoint,50 µM 2'-C-meA,0.06,1.00,173
+Midpoint,Sample size,154,173,
+,,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+Start point,0 µM 2'-C-meA,1.00,0.12,154
+Start point,50 µM 2'-C-meA,0.12,1.00,173
+Start point,Sample size,154,173,
+,,0 µM 2'-C-meA,50 µM 2'-C-meA,Sample size
+Infection time,0 µM 2'-C-meA,1.00,0.43,154
+Infection time,50 µM 2'-C-meA,0.43,1.00,173
+Infection time,Sample size,154,173,
