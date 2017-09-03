@@ -70,7 +70,7 @@ samp%>%
                    "Startpoint sd" = sd(COMB_startPoint_x)) -> table_02
 
 ini_df = table_02[setdiff(seq(1,ncol(table_02)),grep(" sd| mean" ,x = colnames(table_02)))]
-rounded_df = round(table_02[grep(" sd| mean" ,x = colnames(table_02))],2)
+rounded_df = signif(table_02[grep(" sd| mean" ,x = colnames(table_02))],2)
 table_02_round = bind_cols(x = ini_df, y = rounded_df)
 
 write.csv(x = table_02_round, file = "table_02.csv", quote = F, row.names = F, col.names = T)
@@ -101,8 +101,8 @@ table_p_value <- function(df, classifier)
   theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
   colnames(theMatrix) <- df_summary[[classifier]]
   rownames(theMatrix) <- df_summary[[classifier]]
-  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
-  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
   diag(theMatrix) <- "1.00"
   
   theMatrix %>%
@@ -133,8 +133,8 @@ table_p_value <- function(df, classifier)
   theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
   colnames(theMatrix) <- df_summary[[classifier]]
   rownames(theMatrix) <- df_summary[[classifier]]
-  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
-  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
   diag(theMatrix) <- "1.00"
   
   theMatrix %>%
@@ -165,8 +165,8 @@ table_p_value <- function(df, classifier)
   theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
   colnames(theMatrix) <- df_summary[[classifier]]
   rownames(theMatrix) <- df_summary[[classifier]]
-  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
-  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
   diag(theMatrix) <- "1.00"
   
   theMatrix %>%
@@ -197,8 +197,8 @@ table_p_value <- function(df, classifier)
   theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
   colnames(theMatrix) <- df_summary[[classifier]]
   rownames(theMatrix) <- df_summary[[classifier]]
-  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
-  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
   diag(theMatrix) <- "1.00"
   
   theMatrix %>%
@@ -229,8 +229,8 @@ table_p_value <- function(df, classifier)
   theMatrix <- matrix(nrow = length(df_summary[[classifier]]), ncol = length(df_summary[[classifier]]))
   colnames(theMatrix) <- df_summary[[classifier]]
   rownames(theMatrix) <- df_summary[[classifier]]
-  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
-  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(round(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[upper.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
+  theMatrix[lower.tri(x = theMatrix, diag = FALSE)] <- as.character(signif(temp$p.value[lower.tri(temp$p.value, diag=TRUE)],2))
   diag(theMatrix) <- "1.00"
   
   theMatrix %>%
